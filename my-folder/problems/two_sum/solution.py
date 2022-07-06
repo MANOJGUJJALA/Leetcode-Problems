@@ -3,12 +3,12 @@ class Solution:
         # nums.sort()
         l={}
         h=len(nums)-1
+        
         for i in range(len(nums)):
             if target-nums[i] in l:
-                return [i,l[target-nums[i] ]]
+                return [nums.index(target-nums[i]),i]
+                
             else:
                 l[nums[i]]=i
-        return [-1,-1]
-        
-        
+            
         
