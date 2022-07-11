@@ -1,20 +1,24 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        k={}
+        
+        a={}
+        b={}
         for i in s:
-            if i in k:
-                k[i]+=1
+            if i in a:
+                a[i]+=1
             else:
-                k[i]=1
-        f={}
+                a[i]=1
+        
         for i in t:
-            if i in f:
-                f[i]+=1
+            if i in b:
+                b[i]+=1
             else:
-                f[i]=1
-       
-        if f==k:
+                b[i]=1
+        if a==b:
             return True
         else:
             return False
+        
             
+        
+        
