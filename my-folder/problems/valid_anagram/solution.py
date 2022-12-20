@@ -1,24 +1,16 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        
-        a={}
-        b={}
+
+        x,y={},{}
+
         for i in s:
-            if i in a:
-                a[i]+=1
+            if i in x:
+                x[i]+=1
             else:
-                a[i]=1
-        
+                x[i]=1
         for i in t:
-            if i in b:
-                b[i]+=1
+            if i in y:
+                y[i]+=1
             else:
-                b[i]=1
-        if a==b:
-            return True
-        else:
-            return False
-        
-            
-        
-        
+                y[i]=1
+        return x==y
