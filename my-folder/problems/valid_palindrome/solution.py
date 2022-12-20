@@ -1,15 +1,11 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        
-        s1=""
-        
+
+        k=""
+
         for i in s:
-            
-            if i.isdigit():
-                s1+=i
-            elif i.isalpha():
-                s1+=(i.lower())
-        # print(s1)
-        return s1==s1[::-1]
-        
-        
+            if i.isalpha() :
+                k+=i.upper()
+            elif i.isdigit():
+                k+=str(i)
+        return k==k[::-1]
