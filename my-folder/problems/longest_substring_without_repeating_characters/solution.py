@@ -1,24 +1,24 @@
 class Solution:
-    def lengthOfLongestSubstring(self, A: str) -> int:
+    def lengthOfLongestSubstring(self, s: str) -> int:
 
         
-        m = 0
-        se = set()
+        n = len(s)
+        maxLength = 0
+        charMap = {}
+        left = 0
+        
+        for i in range(n):
+            if s[i] not in charMap or charMap[s[i]] < left:
+                charMap[s[i]] = i
+                maxLength = max(maxLength, i - left + 1)
+            else:
+                left = charMap[s[i]] + 1
+                charMap[s[i]] = i
+        
+        return maxLength
 
-        i = 0
-        j = 0
-       
-        while j<len(A):
-            
-            if A[j] not in se:
-                se.add(A[j])
-                j +=1
-                m = max(m,len(se))
-            else: 
-                se.remove(A[i])
-                i +=1
-       
-        return m
+
+
 
 
         
