@@ -1,28 +1,37 @@
 class Solution {
-    public int search(int[] nums , int target) {
 
-        int start = 0, end = nums.length - 1;
-        int mid = (start + end) / 2;
-        while (start <= end) {
-            mid = (start + end) / 2;
-            if (target == nums[mid]) {
-                return mid;
+    public int getpivot(int[] nums,int target){
+        int l=0,r=nums.length-1;
+
+        while(l<=r){
+            int m=(l+r)/2;
+            
+            if(nums[m]==target){
+                return m;
             }
-            if (nums[start] <= nums[mid]) {
-                if (nums[start] <= target && nums[mid] >= target) {
-                    end = mid - 1;
-                } else {
-                    start = mid + 1;
+            if(nums[l]<=nums[m]){
+                if(nums[l]<=target && nums[m]>=target){
+                    r=m-1;
                 }
-            } else {
-                if (nums[end] >= target && nums[mid] <= target) {
-                    start = mid + 1;
-                } else {
-                    end = mid - 1;
+                else{
+                    l=m+1;
                 }
+            }
+            else{
+                if(nums[r]>=target && nums[m]<=target){
+                    l=m+1;
+                }
+                else{
+                    r=m-1;
+                }
+
             }
         }
         return -1;
+    }
+    public int search(int[] nums, int target) {
+
+        return getpivot(nums,target);
         
     }
 }
