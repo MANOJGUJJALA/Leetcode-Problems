@@ -1,24 +1,39 @@
 class Solution {
-     public List<String> letterCombinations(String digits) {
-        List<String> ans = new ArrayList<>();
-        if (digits == null || digits.length() == 0)
-            return ans;
-        String[] mapping = {
-            "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
-        };
-        f(digits, "", ans, mapping, 0);
-        return ans;
-    }
 
-    private List<String> f(String digits, String current, List<String> ans, String[] mapping, int index) {
-        if (index == digits.length()) {
-            ans.add(current);
-            return ans;
+    public void dfs(List<String> r,StringBuilder path,int st,StringBuilder dig,HashMap<String,String>map){
+
+        if(path.length()==dig.length()){
+            String s=path.toString();;
+            r.add(s);
+            return;
         }
-        String letters = mapping[digits.charAt(index) - '0']; // this will convert string value to int , so in first go "2" will be converted in 2 , and for 2 it will return abc
-        for (int i = 0; i < letters.length(); i++) {
-            f(digits, current + letters.charAt(i), ans, mapping, index + 1);
+         
+        String cur=map.get(String.valueOf(dig.charAt(st)));
+        if (cur == null) return;
+        for(int i=0;i<cur.length();i++){
+            path.append(cur.charAt(i));
+            dfs(r,path,st+1,dig,map);
+            path.deleteCharAt(path.length() - 1);
         }
-        return ans;
+
+    }
+    public List<String> letterCombinations(String digits) {
+        
+        List<String>r=new ArrayList<>();
+        if (digits == null || digits.length() == 0) return r;
+        StringBuilder path=new StringBuilder();
+        StringBuilder dig=new StringBuilder(digits);
+        HashMap<String,String>map=new HashMap<>();
+        map.put("2","abc");
+        map.put("3","def");
+        map.put("4","ghi");
+        map.put("5","jkl");
+        map.put("6","mno");
+        map.put("7","pqrs");
+        map.put("8","tuv");
+        map.put("9","wxyz");
+        dfs(r,path,0,dig,map);
+        return r;
+        
     }
 }
